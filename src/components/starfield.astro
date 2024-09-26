@@ -5,7 +5,7 @@
 <script>
   import invariant from "tiny-invariant";
 
-  const COUNT = 800;
+  const COUNT = 900;
   const SPEED = 0.1;
 
   class Star {
@@ -26,7 +26,7 @@
     update(width: number, height: number, speed: number) {
       this.xPrev = this.x;
       this.yPrev = this.y;
-      this.z += speed * 0.0675;
+      this.z += speed * 0.05;
       this.x += this.x * (speed * 0.0225) * this.z;
       this.y += this.y * (speed * 0.0225) * this.z;
       if (
