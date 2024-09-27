@@ -28,9 +28,9 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
         <br /> repeatedly do,
       </div>
       <div
-        class="jetbrains-mono-300 text-center tracking-tighter text-lg md:text-lg"
+        class="jetbrains-mono-300 text-center tracking-tighter text-lg md:text-lg typewriter"
       >
-        therefore excellence is not an act, but a habit
+        <h1>therefore excellence is not an act, but a habit</h1>
       </div>
     </h2>
     <div
@@ -83,6 +83,36 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
 
     #splash-bg-fallback {
       @apply block;
+    }
+  }
+
+  .typewriter h1{
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation:
+      typing 3.5s steps(40, end),
+      blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: white;
     }
   }
 </style>
