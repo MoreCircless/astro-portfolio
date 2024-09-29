@@ -45,8 +45,8 @@ const { icon = mor, typewriter = true, animation = true } = Astro.props;
     </h2>
 
     <div
-      id={animation ? "astronaut" : undefined}
-      class={`w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start ${animation ? "astronaut" : ""}`}
+      id={animation ? "zooman" : undefined}
+      class={`w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start ${animation ? "zooman" : ""}`}
     >
       <Image
         class="h-full w-full object-cover"
@@ -79,12 +79,12 @@ const { icon = mor, typewriter = true, animation = true } = Astro.props;
     }
   }
 
-  #astronaut {
+  #zooman {
     animation: breathe ease-in-out 5s infinite;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #astronaut {
+    #zooman {
       @apply animate-none;
     }
 
