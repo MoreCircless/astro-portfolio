@@ -1,14 +1,12 @@
 ---
 import "@fontsource-variable/inter";
 
-
-
 import About from "~/components/about.astro";
 import Footer from "~/components/footer.astro";
 import Header from "~/components/header.astro";
 import Splash from "~/components/splash.astro";
 import "~/styles/index.css";
-import favicon from "./public/favicon.ico";
+import favicon from "favicon.ico";
 import Projects from "~/components/projects.astro";
 import Skills from "~/components/skills.astro";
 const { generator, site } = Astro;
@@ -25,7 +23,7 @@ const description =
     <link rel="icon" href={favicon} type="image/svg+xml" />
     <meta name="generator" content={generator} />
 
-    <title>Morcircles</title>
+    <title>morcircles</title>
     <meta name="description" content={description} />
     <!-- social media -->
     <meta property="og:title" content="Astro" />
@@ -66,13 +64,11 @@ const description =
     class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
   >
     <Header />
-    <Splash
-      typewriter={true}
-    >
+    <Splash typewriter={true}>
       We are
       <br /> what we
       <br /> repeatedly do,
-      </Splash>
+    </Splash>
     <About />
     <Skills />
     <Projects />
