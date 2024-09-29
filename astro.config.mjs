@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://morecircless.github.io",
-  base: "astro-portfolio",
+  site: "https://morcircl.es",
+  base: "",
   integrations: [tailwind(), icon()],
 });
