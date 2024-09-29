@@ -10,7 +10,8 @@ import Header from "~/components/header.astro";
 import Splash from "~/components/splash.astro";
 import "~/styles/index.css";
 import favicon from "./public/favicon.ico";
-
+import Projects from "~/components/projects.astro";
+import Skills from "~/components/skills.astro";
 const { generator, site } = Astro;
 const image = new URL("social.jpg", site);
 const description =
@@ -27,7 +28,6 @@ const description =
 
     <title>Morcircles</title>
     <meta name="description" content={description} />
-
     <!-- social media -->
     <meta property="og:title" content="Astro" />
     <meta property="og:type" content="website" />
@@ -75,6 +75,8 @@ const description =
       <!-- <Showcase /> -->
     <!-- </div> -->
      <About />
+     <Skills />
+     <Projects />
     <Footer />
   </body>
 </html>
