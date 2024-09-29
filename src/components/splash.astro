@@ -1,13 +1,21 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-import morcirclesLogo from "public/assets/logomorcircles.png";
+import mor from "public/assets/logomorcircles.png";
 import HeroImage from "~/components/hero-image.astro";
 import Starfield from "~/components/starfield.astro";
 import GitHubCorner from "./github-corner.astro";
 
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
+
+interface Props {
+  typewriter?: boolean;
+  icon?: ImageMetadata;
+  bar?: boolean;
+  animation?: boolean;
+}
+
+const { icon = mor, typewriter = true, animation = true } = Astro.props;
 ---
 
 <section class="relative h-full bg-black">
@@ -18,69 +26,33 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
   </div>
   <div class="relative grid h-full place-items-center sm:grid-cols-2">
     <h2
-      class="flex flex-col items-center gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end w-full" 
+      class="flex w-full flex-col items-center gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end"
     >
       <div
         class="jetbrains-mono-800 gradient-text text-center font-bold tracking-tighter text-5xl md:text-6xl"
       >
-        We are
-        <br /> what we
-        <br /> repeatedly do,
+        <slot />
       </div>
-      <div
-        class="jetbrains-mono-300 animation text-center tracking-tighter text-lg md:text-lg text-white"
-      >
-        therefore excellence is not an act, but a <span id="typewriter"
-        ></span><span id="cursor">|</span>
-        <script>
-          function sleep(ms : any) {
-            return new Promise((resolve) => setTimeout(resolve, ms));
-          }
-
-          const phrases = ["habit", "routine", "practice", "custom"];
-          const el = document.getElementById("typewriter");
-
-          let sleepTime = 100;
-
-          let curPhraseIndex = 0;
-
-          const writeLoop = async () => {
-            while (true) {
-              let curWord = phrases[curPhraseIndex];
-
-              for (let i = 0; i < curWord.length; i++) {
-                el!.innerText = curWord.substring(0, i + 1);
-                await sleep(sleepTime);
-              }
-
-              await sleep(sleepTime * 10);
-
-              for (let i = curWord.length; i > 0; i--) {
-                el!.innerText = curWord.substring(0, i - 1);
-                await sleep(sleepTime);
-              }
-
-              await sleep(sleepTime * 5);
-
-              if (curPhraseIndex === phrases.length - 1) {
-                curPhraseIndex = 0;
-              } else {
-                curPhraseIndex++;
-              }
-            }
-          };
-
-          writeLoop();
-        </script>
-      </div>
+      {
+        typewriter === true && (
+          <div class="jetbrains-mono-300 animation text-center tracking-tighter text-white text-lg md:text-lg">
+            therefore excellence is not an act, but a{" "}
+            <>
+              <span id="typewriter" />
+              <span id="cursor">|</span>
+            </>
+          </div>
+        )
+      }
     </h2>
+
     <div
-      id="astronaut"
-      class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start"
+      id={animation ? "astronaut" : undefined}
+      class={`w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start ${animation ? "astronaut" : ""}`}
     >
       <Image
         class="h-full w-full object-cover"
-        src={morcirclesLogo}
+        src={icon}
         widths={widths}
         sizes={sizes}
         loading="eager"
@@ -128,7 +100,7 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
   }
 
   #typewriter {
-}
+  }
   #cursor {
     color: white;
     animation: blink 1s linear infinite;
@@ -143,3 +115,44 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
     }
   }
 </style>
+
+<script>
+  function sleep(ms: any) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const phrases = ["habit", "routine", "practice", "custom"];
+  const el = document.getElementById("typewriter");
+
+  let sleepTime = 100;
+
+  let curPhraseIndex = 0;
+
+  const writeLoop = async () => {
+    while (true) {
+      let curWord = phrases[curPhraseIndex];
+
+      for (let i = 0; i < curWord.length; i++) {
+        el!.innerText = curWord.substring(0, i + 1);
+        await sleep(sleepTime);
+      }
+
+      await sleep(sleepTime * 10);
+
+      for (let i = curWord.length; i > 0; i--) {
+        el!.innerText = curWord.substring(0, i - 1);
+        await sleep(sleepTime);
+      }
+
+      await sleep(sleepTime * 5);
+
+      if (curPhraseIndex === phrases.length - 1) {
+        curPhraseIndex = 0;
+      } else {
+        curPhraseIndex++;
+      }
+    }
+  };
+
+  writeLoop();
+</script>
